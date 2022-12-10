@@ -1,11 +1,11 @@
 // require file system module
 const fs = require("fs");
 const https = require("https");
-// read token.txt file
-// const token = fs.readFileSync("/run/secrets/token.txt");
-const token = fs.readFileSync("token.txt");
+console.log(`${new Date().toUTCString()}: Start`);
+// get token from command line
+const token = process.argv[2];
 // read config.json
-const configRaw = fs.readFileSync("config.json");
+const configRaw = fs.readFileSync(`${__dirname}/config.json`);
 const configParsed = JSON.parse(configRaw);
 // get domains
 const domains = configParsed.domains;
@@ -30,9 +30,10 @@ https
 
     // The whole response has been received. Print out the result.
     resp.on("end", () => {
-      console.log(data);
+      console.log(`${new Date().toUTCString()}: Data: ${data}`);
     });
   })
   .on("error", (err) => {
-    console.log("Error: " + err.message);
+    console.log(`${new Date().toUTCString()}: Error:  ${err.message}`);
   });
+console.log(`${new Date().toUTCString()}: End`);

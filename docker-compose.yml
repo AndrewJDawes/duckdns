@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  cron:
+    build: .
+    secrets:
+      - token
+    volumes:
+      - type: bind
+        source: ./config.json
+        target: /app/config.json
+secrets:
+  token:
+    file: token.txt
