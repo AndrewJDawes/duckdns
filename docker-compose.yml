@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   cron:
-    build: andrewjdawes/duckdns:latest
+    image: "andrewjdawes/duckdns:latest"
     secrets:
       - token
     volumes:
